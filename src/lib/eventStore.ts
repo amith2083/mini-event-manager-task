@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface Event {
   id: string;
@@ -10,7 +10,7 @@ interface Event {
 interface EventStore {
   events: Event[];
   searchQuery: string;
-  addEvent: (event: Omit<Event, 'id'>) => void;
+  addEvent: (event: Omit<Event, "id">) => void;
   deleteEvent: (id: string) => void;
   setSearchQuery: (query: string) => void;
   filteredEvents: () => Event[];
@@ -20,7 +20,7 @@ export const useEventStore = create<EventStore>()(
   persist(
     (set, get) => ({
       events: [],
-      searchQuery: '',
+      searchQuery: "",
       addEvent: (event) =>
         set((state) => ({
           events: [...state.events, { ...event, id: crypto.randomUUID() }],
@@ -39,7 +39,7 @@ export const useEventStore = create<EventStore>()(
       },
     }),
     {
-      name: 'event-storage',
+      name: "event-storage",
     }
   )
 );
